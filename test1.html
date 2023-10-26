@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test 1 by Tuba Khan</title>
+    <style>
+        body {background-color:powderblue;}
+        h1 {color:Black;}
+        p {color:Black;}
+        </style>
+</head>
+<body><center><i>
+    <h1>Income Tax Calculator</h1>
+    
+    <label for="income">Enter your income (INR): </label>
+    <input type="number" id="income" placeholder="Enter your income" />
+    <br />
+    <br>
+    <label for="gender">Select your gender: </label>
+    <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br />
+    </br>
+    <label for="da">Enter DA (80%): </label>
+    <input type="number" id="da" placeholder="Enter DA" />
+    <br />
+    <br>
+    <label for="hra">Enter HRA (30%): </label>
+    <input type="number" id="hra" placeholder="Enter HRA" />
+    <br />
+</br>
+    <label for="ta">Enter TA (20%): </label>
+    <input type="number" id="ta" placeholder="Enter TA" />
+    <br />
+<br>
+    <button onclick="calculateTax()">Calculate Tax</button>
+</br>
+    <p id="result"></p>
+</i>
+
+    <script>
+        function calculateTax() {
+            const income = parseFloat(document.getElementById("income").value);
+            const gender = document.getElementById("gender").value;
+            const da = parseFloat(document.getElementById("da").value);
+            const hra = parseFloat(document.getElementById("hra").value);
+            const ta = parseFloat(document.getElementById("ta").value);
+
+            const totalIncome = income + (da * 0.8) + (hra * 0.3) + (ta * 0.2);
+
+            let taxRate = 0;
+            if (gender === "male") {
+                if (totalIncome <= 500000) {
+                    taxRate = 0.05;
+                } else if (totalIncome <= 1000000) {
+                    taxRate = 0.2;
+                } else {
+                    taxRate = 0.3;
+                }
+            } else if (gender === "female") {
+                if (totalIncome <= 500000) {
+                    taxRate = 0.03;
+                } else if (totalIncome <= 1000000) {
+                    taxRate = 0.15;
+                } else {
+                    taxRate = 0.25;
+                }
+            }
+
+            const incomeTax = totalIncome * taxRate;
+
+            document.getElementById("result").innerHTML = `Your income tax is INR ${incomeTax.toFixed(2)}`;
+        }
+     
+    </script>
+    </center>
+</body>
+</html>
